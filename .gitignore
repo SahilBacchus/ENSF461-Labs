@@ -11,6 +11,7 @@
 # compiled executables 
 *.exe 
 *.bin
+*.out
 
 
 #########################
