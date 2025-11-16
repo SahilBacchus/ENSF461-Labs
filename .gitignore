@@ -21,3 +21,7 @@
 .DS_Store
 
 *.zip
+
+
+# dont ignore test files from  lab05
+!/lab05-Group12/**/tests.out
