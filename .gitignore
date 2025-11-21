@@ -28,3 +28,6 @@
 
 # dont ignore test files from  lab06
 !/lab06-Group12/**/test?.?.out
+
+# dont ignore test files from  lab07
+!/lab07-Group12/**/test?.?.out
