@@ -91,6 +91,9 @@ int main(int argc, char* argv[]) {
         else if(strcmp(tokens[0], "pri") == 0){
             pri(atoi(tokens[1]));
         }
+        else if(strcmp(tokens[0], "pia") == 0){
+            pia(atoi(tokens[1]));
+        }
 
         for (int i = 0; tokens[i] != NULL; i++){
             free(tokens[i]);
@@ -151,7 +154,7 @@ __uint32_t fib(__uint32_t val){
 void pri(__uint32_t context) {
     __uint32_t N = contexts[context];
 
-    fprintf(output_file, "ctx %02d: primes (result:", context);
+    fprintf(output_file, "ctx %02d: pri (result:", context);
 
     int first = 1;
     for (__uint32_t n = 2; n <= N; n++) {
