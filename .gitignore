@@ -22,6 +22,7 @@
 
 *.zip
 
+/__MACOSX
 
 # dont ignore test files from  lab05
 !/lab05-Group12/**/tests.out
