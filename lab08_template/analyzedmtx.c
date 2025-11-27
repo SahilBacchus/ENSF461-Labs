@@ -74,6 +74,7 @@ int generate_file_list(char* path) {
 
     //Copy over the files into the sharedmem array
 
+
     return TRUE;
 }
 
@@ -142,6 +143,46 @@ char* scandmtx(char* filepath) {
 
     //Look at dmtxread.c to implement the rest of the dmtx decoding process
     
+
+    dec = dmtxDecodeCreate(img, 1);
+    if (!dec) {
+        dmtxImageDestroy(&img);
+        DestroyMagickWand(wand);
+        free(pxl);
+        return NULL;
+    }
+
+    reg = dmtxRegionFindNext(dec, NULL);
+    if (!reg) {
+        dmtxDecodeDestroy(&dec);
+        dmtxImageDestroy(&img);
+        DestroyMagickWand(wand);
+        free(pxl);
+        return NULL;
+    }
+
+    msg = dmtxDecodeMatrixRegion(dec, reg, 0);
+    if (!msg) {
+        dmtxRegionDestroy(&reg);
+        dmtxDecodeDestroy(&dec);
+        dmtxImageDestroy(&img);
+        DestroyMagickWand(wand);
+        free(pxl);
+        return NULL;
+    }
+
+    // Copy the message
+    result = malloc(msg->outputIdx + 1);
+    memcpy(result, msg->output, msg->outputIdx);
+    result[msg->outputIdx] = '\0';
+
+    dmtxMessageDestroy(&msg);
+    dmtxRegionDestroy(&reg);
+    dmtxDecodeDestroy(&dec);
+
+
+    
+
     dmtxImageDestroy(&img);
     DestroyMagickWand(wand);
 
